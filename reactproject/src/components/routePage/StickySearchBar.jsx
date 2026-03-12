@@ -41,9 +41,16 @@ const StickySearchBar = ({ onSearch }) => {
     <div className="sticky-search-container">
       <form className="search-bar-form" onSubmit={handleSubmit}>
         <div className="input-group">
-          <label>From</label>
-          <select name="from" value={searchData.from} onChange={handleChange} required>
-            <option value="">Select Departure</option>
+          <label htmlFor="route-from">Departure</label>
+          <select
+            id="route-from"
+            name="from"
+            value={searchData.from}
+            onChange={handleChange}
+            required
+            aria-label="Select departure city"
+          >
+            <option value="">Select city</option>
             {fromCities.map((city) => (
               <option key={city} value={city}>{city}</option>
             ))}
@@ -51,16 +58,25 @@ const StickySearchBar = ({ onSearch }) => {
         </div>
 
         <div className="input-group">
-          <label>To</label>
-          <select name="to" value={searchData.to} onChange={handleChange} required>
-            <option value="">Select Destination</option>
+          <label htmlFor="route-to">Destination</label>
+          <select
+            id="route-to"
+            name="to"
+            value={searchData.to}
+            onChange={handleChange}
+            required
+            aria-label="Select destination city"
+          >
+            <option value="">Select city</option>
             {toCities.map((city) => (
               <option key={city} value={city}>{city}</option>
             ))}
           </select>
         </div>
 
-        <button type="submit" className="search-btn">Search Routes</button>
+        <button type="submit" className="search-btn">
+          Search Routes
+        </button>
       </form>
     </div>
   );

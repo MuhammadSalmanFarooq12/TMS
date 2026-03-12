@@ -5,11 +5,23 @@ const Route = require("../models/Route");
 
 
 // ==============================
+// Fleet fare add-on per seat (in addition to route baseFare from Manage Routes)
+const FLEET_FARE_ADDON = {
+  Mercedes: 2000,
+  Scania: 1000,
+};
+
+const getFleetAddon = (fleetName) => {
+  if (!fleetName || typeof fleetName !== "string") return 0;
+  const key = fleetName.trim();
+  return FLEET_FARE_ADDON[key] ?? 0;
+};
+
 // CREATE a new booking
 // ==============================
 const createBooking = async (req, res) => {
   try {
-    const { route, passengerName, email, phone, seats, travelDate } = req.body; // ✅ added phone
+    const { route, passengerName, email, phone, seats, travelDate, fleet } = req.body;
 
     // Check if route exists
     const existingRoute = await Route.findById(route);
@@ -17,25 +29,27 @@ const createBooking = async (req, res) => {
       return res.status(404).json({ message: "Route not found" });
     }
 
-    // Check seat availability
-    if (seats > existingRoute.availableSeats) {
+    const availableSeats = existingRoute.availableSeats ?? 50;
+    if (seats > availableSeats) {
       return res.status(400).json({
-        message: `Only ${existingRoute.availableSeats} seats available`,
+        message: `Only ${availableSeats} seats available`,
       });
     }
 
-    // Calculate total price dynamically
-    const totalPrice = seats * existingRoute.baseFare;
+    // Base fare from Manage Routes + fleet addon (Mercedes +2000, Scania +1000 per seat)
+    const farePerSeat = existingRoute.baseFare + getFleetAddon(fleet);
+    const totalPrice = Math.round(seats * farePerSeat);
 
     const newBooking = new Booking({
       route,
       passengerName,
       email,
-      phone,           // ✅ save phone
+      phone,
       seats,
       travelDate,
       totalPrice,
       status: "confirmed",
+      fleet: fleet || "",
     });
 
     const savedBooking = await newBooking.save();
@@ -61,7 +75,7 @@ const createBooking = async (req, res) => {
 const getAllBookings = async (req, res) => {
   try {
     const bookings = await Booking.find()
-      .populate("route", "from to duration baseFare");
+      .populate("route", "from to duration baseFare availableSeats");
 
     res.status(200).json(bookings);
 
@@ -80,7 +94,7 @@ const getAllBookings = async (req, res) => {
 const getBookingById = async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id)
-      .populate("route", "from to duration baseFare");
+      .populate("route", "from to duration baseFare availableSeats");
 
     if (!booking)
       return res.status(404).json({ message: "Booking not found" });
@@ -101,11 +115,11 @@ const getBookingById = async (req, res) => {
 // ==============================
 const updateBooking = async (req, res) => {
   try {
-    const { status, phone } = req.body; // ✅ added phone update
+    const { status, phone, fleet } = req.body;
 
     const updatedBooking = await Booking.findByIdAndUpdate(
       req.params.id,
-      { status, phone },  // ✅ update phone
+      { ...(status != null && { status }), ...(phone != null && { phone }), ...(fleet != null && { fleet }) },
       { new: true }
     );
 
@@ -133,10 +147,9 @@ const deleteBooking = async (req, res) => {
     if (!deletedBooking)
       return res.status(404).json({ message: "Booking not found" });
 
-    // Restore seats when booking deleted
     const route = await Route.findById(deletedBooking.route);
     if (route) {
-      route.availableSeats += deletedBooking.seats;
+      route.availableSeats = (route.availableSeats ?? 50) + deletedBooking.seats;
       await route.save();
     }
 

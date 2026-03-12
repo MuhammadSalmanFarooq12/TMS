@@ -1,20 +1,71 @@
 .route-section {
-  padding: 100px 0;
+  padding: 40px 0 100px;
   background: linear-gradient(180deg, #0f172a, #111827);
 }
 
+.route-status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 90%;
+}
+
 .route-title {
-  text-align: center;
-  font-size: 36px;
-  color: #ffffff;
-  margin-bottom: 60px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.route-reset-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.15);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.route-reset-btn:hover {
+  background: rgba(249, 115, 22, 0.25);
+  color: #fb923c;
 }
 
 .route-grid {
   width: 90%;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 40px;
+}
+
+.route-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 24px;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: 16px;
+}
+
+.route-empty-state h2 {
+  font-size: 22px;
+  color: #fca5a5;
+  margin: 0 0 12px 0;
+}
+
+.route-empty-state p {
+  color: #94a3b8;
+  margin: 0;
+  font-size: 15px;
 }
