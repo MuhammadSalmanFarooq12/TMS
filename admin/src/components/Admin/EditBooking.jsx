@@ -8,13 +8,14 @@ const EditBooking = () => {
   const navigate = useNavigate();
 
   const [booking, setBooking] = useState({
-    route: "", // store route name here
+    route: "",
     passengerName: "",
     email: "",
-    phone: "", 
+    phone: "",
     seats: "",
     travelDate: "",
     status: "confirmed",
+    fleet: "",
   });
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const EditBooking = () => {
           route: routeName,
           phone: res.data.phone || "",
           travelDate: res.data.travelDate?.slice(0, 10),
+          fleet: res.data.fleet || "",
         });
       } catch (error) {
         toast.error("Failed to fetch booking ❌");
@@ -57,6 +59,7 @@ const EditBooking = () => {
         seats: booking.seats,
         travelDate: booking.travelDate,
         status: booking.status,
+        fleet: booking.fleet,
       });
 
       toast.success("Booking updated successfully 🚀");
@@ -115,6 +118,15 @@ const EditBooking = () => {
           value={booking.seats}
           onChange={handleChange}
           required
+        />
+
+        <label>Fleet</label>
+        <input
+          type="text"
+          name="fleet"
+          placeholder="Fleet (e.g. Mercedes, Scania)"
+          value={booking.fleet}
+          onChange={handleChange}
         />
 
         <input

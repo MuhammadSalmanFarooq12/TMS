@@ -1,33 +1,60 @@
 .search-box {
   display: flex;
-  gap: 15px;
-  padding: 20px;
+  gap: 16px;
+  padding: 24px;
   border-radius: 20px;
   backdrop-filter: blur(15px);
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 30px;
   flex-wrap: wrap;
+}
+
+.search-box-loading {
+  color: rgba(255, 255, 255, 0.9);
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+}
+
+.search-box-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.search-box-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .search-box select,
 .search-box input {
   padding: 12px 15px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   min-width: 150px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
+  font-size: 14px;
+}
+
+.search-box input[type="date"] {
+  cursor: pointer;
+  color-scheme: dark;
 }
 
 .search-box select option {
-  background: #111;
+  background: #1e293b;
   color: #fff;
 }
 
-.search-box button {
-  padding: 12px 25px;
+.search-box-btn {
+  padding: 12px 24px;
   border-radius: 8px;
   border: none;
   background: gold;
@@ -35,8 +62,10 @@
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease;
+  align-self: flex-end;
 }
 
-.search-box button:hover {
+.search-box-btn:hover {
   background: #ffd700cc;
+  transform: translateY(-1px);
 }

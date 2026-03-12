@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "./RouteSection.css";
 import RouteItem from "./RouteItem";
 import StickySearchBar from "./StickySearchBar";
 
 const RouteSection = () => {
+  const [searchParams] = useSearchParams();
   const [routes, setRoutes] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
-
-  useEffect(() => {
-    loadAllRoutes();
-  }, []);
 
   const loadAllRoutes = async () => {
     try {
@@ -32,25 +30,34 @@ const RouteSection = () => {
       setHasSearched(true);
     } catch (err) {
       console.error("Search failed:", err);
-      setRoutes([]); // Clear grid to show "Not Available" message
+      setRoutes([]);
       setHasSearched(true);
     }
   };
+
+  useEffect(() => {
+    const from = searchParams.get("from");
+    const to = searchParams.get("to");
+    if (from && to) {
+      handleSearch({ from, to });
+    } else {
+      loadAllRoutes();
+    }
+  }, [searchParams]);
 
   return (
     <section className="route-section">
       <StickySearchBar onSearch={handleSearch} />
 
-      <div className="status-bar" style={{ display: "flex", justifyContent: "space-between", padding: "20px 0" }}>
+      <div className="route-status-bar">
         <h2 className="route-title">
           {hasSearched
             ? `Search Results (${routes.length})`
             : "All Available Routes"}
         </h2>
-
         {hasSearched && (
-          <button onClick={loadAllRoutes} style={{ cursor: "pointer", padding: "5px 15px" }}>
-            Reset View
+          <button type="button" onClick={loadAllRoutes} className="route-reset-btn">
+            Show All Routes
           </button>
         )}
       </div>
@@ -61,9 +68,9 @@ const RouteSection = () => {
             <RouteItem key={route._id} route={route} />
           ))
         ) : (
-          <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "60px" }}>
-            <h2 style={{ color: "#d9534f" }}>Route Not Available Yet ❌</h2>
-            <p>We haven't launched trips for this specific route. Try another city!</p>
+          <div className="route-empty-state">
+            <h2>Route Not Available Yet</h2>
+            <p>We haven&apos;t launched trips for this route. Try another city or show all routes.</p>
           </div>
         )}
       </div>

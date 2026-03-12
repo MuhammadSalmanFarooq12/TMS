@@ -79,6 +79,12 @@ body {
   overflow-x: hidden; /* Prevent unnecessary horizontal scroll */
 }
 
+.admin-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  margin: -8px 0 16px 0;
+}
+
 /* ===== Search ===== */
 .search-input {
   width: 280px;

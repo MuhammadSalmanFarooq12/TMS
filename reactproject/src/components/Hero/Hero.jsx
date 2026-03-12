@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 import heroVideo from "../../assets/videos/hero.mp4";
 import SearchBox from "../SearchBox/SearchBox";
 
 const Hero = () => {
-  const handleSearch = (data) => {
-    console.log("Search Data:", data);
-    // You can later connect this to API or routing to results page
+  const navigate = useNavigate();
+
+  const handleSearch = ({ from, to, date }) => {
+    const params = new URLSearchParams();
+    if (from) params.set("from", from);
+    if (to) params.set("to", to);
+    if (date) params.set("date", date);
+    navigate(`/routes?${params.toString()}`);
   };
 
   return (

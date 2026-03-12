@@ -1,3 +1,5 @@
+const Route = require("../models/Route");
+
 exports.getAllRoutes = async (req, res) => {
   try {
     const { from, to } = req.query;
@@ -20,6 +22,40 @@ exports.getAllRoutes = async (req, res) => {
     const routes = await Route.find(query);
     res.json(routes);
 
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getRouteById = async (req, res) => {
+  try {
+    const route = await Route.findById(req.params.id);
+    if (!route) {
+      return res.status(404).json({ message: "Route not found" });
+    }
+    res.json(route);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.createRoute = async (req, res) => {
+  try {
+    const { from, to, distanceKm, duration, baseFare } = req.body;
+    if (!req.file) {
+      return res.status(400).json({ message: "Image is required" });
+    }
+    const image = req.file.path || "uploads/" + req.file.filename;
+    const route = new Route({
+      from,
+      to,
+      distanceKm: Number(distanceKm),
+      duration,
+      baseFare: Number(baseFare),
+      image,
+    });
+    await route.save();
+    res.status(201).json(route);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

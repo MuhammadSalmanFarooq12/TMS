@@ -35,6 +35,10 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       default: "confirmed",
     },
+    fleet: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

@@ -33,6 +33,10 @@ const routeSchema = new mongoose.Schema(
       type: String, // URL to the uploaded image
       required: true,
     },
+    availableSeats: {
+      type: Number,
+      default: 50,
+    },
   },
   { timestamps: true }
 );

@@ -62,6 +62,10 @@ const AdminLayout = () => {
           <NavLink to="contacts" className="nav-link">
             Contact Messages
           </NavLink>
+
+          <NavLink to="web-queries" className="nav-link">
+            Web Queries
+          </NavLink>
         </nav>
       </aside>
 

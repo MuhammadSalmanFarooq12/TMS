@@ -74,6 +74,71 @@
   box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
 }
 
+/* Travel Date: react-datepicker input */
+.BookingComp-date-input {
+  width: 100%;
+  cursor: pointer;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+/* Calendar popup - dark theme to match form */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker {
+  font-family: inherit;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.react-datepicker__header {
+  background: #0f172a;
+  border-bottom: 1px solid #334155;
+  padding-top: 12px;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: #f1f5f9;
+}
+
+.react-datepicker__day {
+  color: #e2e8f0;
+}
+
+.react-datepicker__day:hover {
+  background: #334155;
+  color: #fff;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background: #f97316 !important;
+  color: #fff !important;
+}
+
+.react-datepicker__day--disabled {
+  color: #64748b;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #94a3b8;
+}
+
+.react-datepicker__navigation:hover *::before {
+  border-color: #f97316;
+}
+
+.react-datepicker__month-dropdown-container,
+.react-datepicker__year-dropdown-container {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
 /* ---------- Button (same class you already use) ---------- */
 
 .book-btn {
@@ -92,6 +157,32 @@
 .book-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(249, 115, 22, 0.35);
+}
+
+.book-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.BookingComp-fare-note {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.BookingComp-fare-summary {
+  padding: 12px 14px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.BookingComp-loading {
+  text-align: center;
+  color: #cbd5e1;
 }
 
 /* ---------- Responsive ---------- */
