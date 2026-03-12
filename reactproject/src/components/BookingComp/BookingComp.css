@@ -1,0 +1,112 @@
+/* BookingComp.css */
+
+.BookingComp-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 28px 26px;
+  background: #0b0f14;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.BookingComp-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 26px;
+  color: #f97316;
+  letter-spacing: 0.4px;
+}
+
+/* ---------- Form ---------- */
+
+.BookingComp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ---------- Rows ---------- */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ---------- Input group ---------- */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+/* ---------- Inputs & Select ---------- */
+
+.input-group input,
+.input-group select {
+  background: #050608;
+  border: 1px solid #1f2933;
+  padding: 12px 12px;
+  border-radius: 10px;
+  color: #e5e7eb;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group select {
+  cursor: pointer;
+}
+
+.input-group input::placeholder {
+  color: #64748b;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
+}
+
+/* ---------- Button (same class you already use) ---------- */
+
+.book-btn {
+  margin-top: 10px;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: #050608;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.35);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 700px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .BookingComp-container {
+    margin: 40px 14px;
+    padding: 22px 18px;
+  }
+
+  .BookingComp-title {
+    font-size: 22px;
+  }
+}

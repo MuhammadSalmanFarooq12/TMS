@@ -1,0 +1,59 @@
+.busgrid-new {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.buscard-new {
+  background: linear-gradient(145deg, #09090a, #010637);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.buscard-new:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+}
+
+.buscard-image {
+  height: 220px;
+  overflow: hidden;
+}
+
+.buscard-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.buscard-info {
+  padding: 20px;
+}
+
+.buscard-info h3 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.buscard-info p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 15px;
+}
+
+.buscard-btn {
+  background: #f97316;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.buscard-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.7);
+}

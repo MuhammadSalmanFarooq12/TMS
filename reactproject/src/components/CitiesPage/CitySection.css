@@ -1,0 +1,20 @@
+.city-section {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #0f172a, #111827);
+}
+
+.city-title {
+  text-align: center;
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 60px;
+}
+
+.city-grid {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}

@@ -1,0 +1,84 @@
+.route-hero {
+  position: relative;
+  height: 90vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #121314 0%,
+    #0c0c0d 50%,
+    #0f172a 100%
+  );
+  color: #ffffff;
+}
+
+/* Content */
+.route-hero-content {
+  max-width: 800px;
+  z-index: 2;
+}
+
+.route-hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.route-hero p {
+  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #f97316;
+  animation: bounce 1.8s infinite;
+}
+
+/* Glow Effects */
+.glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(249,115,22,0.25), transparent 70%);
+  filter: blur(80px);
+  z-index: 1;
+}
+
+.glow1 {
+  top: -100px;
+  left: -100px;
+}
+
+.glow2 {
+  bottom: -100px;
+  right: -100px;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .route-hero h1 {
+    font-size: 32px;
+  }
+
+  .route-hero p {
+    font-size: 16px;
+  }
+}
