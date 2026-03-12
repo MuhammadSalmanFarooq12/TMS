@@ -1,0 +1,55 @@
+.reviews-section {
+  padding: 60px 0;
+  background: #0f1013;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.reviews-section h2 {
+  margin-bottom: 40px;
+  color: #f97316;
+}
+
+/* Wrapper */
+.reviews-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Track */
+.reviews-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll 20s linear infinite;
+}
+
+/* Pause on hover */
+.reviews-wrapper:hover .reviews-track {
+  animation-play-state: paused;
+}
+
+/* Review Card */
+.review-card {
+  min-width: 300px;
+  background: #1b1a16;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.review-card h4 {
+  margin-top: 10px;
+  color: #f97316;
+}
+
+/* Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
