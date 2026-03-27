@@ -1,0 +1,324 @@
+
+> dev
+> nodemon server.js
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.4] injecting env (3) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Server running on port 5000
+MongoDB Connected: ac-xeb0hrd-shard-00-01.crr925q.mongodb.net
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.4] injecting env (3) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+c:\Users\HP\Desktop\TMS Full Project\backend\node_modules\router\lib\route.js:228
+        throw new TypeError('argument handler must be a function')
+        ^
+
+TypeError: argument handler must be a function
+    at Route.<computed> [as post] (c:\Users\HP\Desktop\TMS Full Project\backend\node_modules\router\lib\route.js:228:15)
+    at Router.<computed> [as post] (c:\Users\HP\Desktop\TMS Full Project\backend\node_modules\router\index.js:448:19)
+    at Object.<anonymous> (c:\Users\HP\Desktop\TMS Full Project\backend\routes\userRoutes.js:12:8)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1504:12)
+
+Node.js v24.12.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.4] injecting env (3) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+c:\Users\HP\Desktop\TMS Full Project\backend\node_modules\router\lib\route.js:228
+        throw new TypeError('argument handler must be a function')
+        ^
+
+TypeError: argument handler must be a function
+    at Route.<computed> [as post] (c:\Users\HP\Desktop\TMS Full Project\backend\node_modules\router\lib\route.js:228:15)
+    at Router.<computed> [as post] (c:\Users\HP\Desktop\TMS Full Project\backend\node_modules\router\index.js:448:19)
+    at Object.<anonymous> (c:\Users\HP\Desktop\TMS Full Project\backend\routes\userRoutes.js:12:8)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1504:12)
+
+Node.js v24.12.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.4] injecting env (3) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Server running on port 5000
+MongoDB Connected: ac-xeb0hrd-shard-00-01.crr925q.mongodb.net
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined
+DEBUG: Keys received -> []
+DEBUG: Value of 'from' -> undefined
+DEBUG: Value of 'to' -> undefined

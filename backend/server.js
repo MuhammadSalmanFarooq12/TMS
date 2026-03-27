@@ -32,6 +32,7 @@ const dynamicPricingRoutes = require("./routes/dynamicPricingRoutes");
 const packageBookingRoutes = require("./routes/packageBookingRoutes");
 const busBookingRoutes = require("./routes/busBookingRoutes");
 const contactRoutes = require("./routes/contactRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 
 
 
@@ -56,6 +57,7 @@ app.use("/api/dynamic-pricing", dynamicPricingRoutes);
 app.use("/api/package-bookings", packageBookingRoutes);
 app.use("/api/bus-bookings", busBookingRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/chat", chatRoutes);
 
 
 

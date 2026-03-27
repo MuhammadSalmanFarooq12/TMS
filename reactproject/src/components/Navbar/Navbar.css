@@ -17,6 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 /* Logo */
@@ -104,6 +105,19 @@
 
 .btn-primary:hover {
   background: #2a2a2a;
+}
+
+.btn-logout {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.btn-logout:hover {
+  background: #1a1a1a;
+  color: #f87171;
+  border-color: #f87171;
 }
 
 /* Hamburger */

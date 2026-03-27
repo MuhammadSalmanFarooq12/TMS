@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => { logout(); navigate("/"); };
 
   return (
     <nav className="navbar">
@@ -24,8 +29,17 @@ const Navbar = () => {
         </ul>
 
         <div className="auth-buttons">
-          <NavLink to="/login" className="btn-outline">Login</NavLink>
-          <NavLink to="/register" className="btn-primary">Register</NavLink>
+          {user ? (
+            <>
+              <NavLink to="/dashboard" className="btn-outline">👤 {user.name.split(" ")[0]}</NavLink>
+              <button className="btn-primary btn-logout" onClick={handleLogout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login" className="btn-outline">Login</NavLink>
+              <NavLink to="/register" className="btn-primary">Register</NavLink>
+            </>
+          )}
         </div>
 
         <div 
