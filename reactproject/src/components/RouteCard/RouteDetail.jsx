@@ -11,6 +11,7 @@ const RouteDetail = () => {
   const [formData, setFormData] = useState({
     passengerName: "",
     email: "",
+    phone: "",
     seats: 1,
     travelDate: "",
   });
@@ -59,6 +60,7 @@ const RouteDetail = () => {
       setFormData({
         passengerName: "",
         email: "",
+        phone: "",
         seats: 1,
         travelDate: "",
       });
@@ -135,6 +137,15 @@ const RouteDetail = () => {
                 placeholder="Your Email"
                 required
                 value={formData.email}
+                onChange={handleChange}
+              />
+
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Your Phone Number"
+                required
+                value={formData.phone}
                 onChange={handleChange}
               />
 
