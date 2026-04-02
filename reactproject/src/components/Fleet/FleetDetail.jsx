@@ -1,7 +1,7 @@
-// FleetDetail.jsx (frontend)
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import generateTicketPDF from "../../utils/generateTicketPDF";
 import "./FleetDetail.css";
 
 const FleetDetail = () => {
@@ -39,24 +39,33 @@ const FleetDetail = () => {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/api/bus-bookings", {
+      const res = await axios.post("http://localhost:5000/api/bus-bookings", {
         busId: id,
         passengerName: formData.passengerName,
         email: formData.email,
-        phone: formData.phone,     // ✅ send phone
+        phone: formData.phone,
         seats: formData.seats,
         travelDate: formData.travelDate,
       });
 
-      alert("Booking Successful 🎉");
+      generateTicketPDF({
+        bookingId: res.data._id,
+        passengerName: formData.passengerName,
+        email: formData.email,
+        phone: formData.phone,
+        busName: bus.name,
+        numberPlate: bus.numberPlate,
+        busRoute: bus.route,
+        departureTime: bus.departureTime,
+        arrivalTime: bus.arrivalTime,
+        travelDate: formData.travelDate,
+        seats: formData.seats,
+        pricePerSeat: bus.price,
+        totalPrice: formData.seats * bus.price,
+      }, "fleet");
+
       setShowForm(false);
-      setFormData({
-        passengerName: "",
-        email: "",
-        phone: "",
-        seats: 1,
-        travelDate: "",
-      });
+      setFormData({ passengerName: "", email: "", phone: "", seats: 1, travelDate: "" });
     } catch (error) {
       console.error(error.response || error);
       alert("Booking Failed ❌");

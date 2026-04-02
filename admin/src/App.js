@@ -25,7 +25,7 @@ import EditPackageBooking from './components/Admin/EditPackageBooking';
 import ManageBusBookings from './components/Admin/ManageBusBookings';
 import EditBusBooking from './components/Admin/EditBusBooking';
 import ManageContacts from './components/Admin/ManageContacts';
-import WebQueries from './components/Admin/WebQueries';
+import ManageUsers from './components/Admin/ManageUsers';
 
 function App() {
   return (
@@ -58,7 +58,7 @@ function App() {
           <Route path="cities/add" element={<AddCity />} />
           <Route path="cities/edit/:id" element={<EditCity />} />
           <Route path="/admin/contacts" element={<ManageContacts />} />
-          <Route path="web-queries" element={<WebQueries />} />
+          <Route path="users" element={<ManageUsers />} />
 
         </Route>
 

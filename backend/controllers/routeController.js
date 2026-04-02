@@ -11,12 +11,15 @@ exports.getAllRoutes = async (req, res) => {
 
     let query = {};
 
-    // If both are present, we filter.
     if (from && to) {
       query = {
         from: { $regex: new RegExp(`^${from.trim()}$`, "i") },
-        to: { $regex: new RegExp(`^${to.trim()}$`, "i") }
+        to: { $regex: new RegExp(`^${to.trim()}$`, "i") },
       };
+    } else if (from) {
+      query = { from: { $regex: new RegExp(`^${from.trim()}$`, "i") } };
+    } else if (to) {
+      query = { to: { $regex: new RegExp(`^${to.trim()}$`, "i") } };
     }
 
     const routes = await Route.find(query);

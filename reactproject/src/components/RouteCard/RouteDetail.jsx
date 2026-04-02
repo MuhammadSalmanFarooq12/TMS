@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import generateTicketPDF from "../../utils/generateTicketPDF";
 import "./RouteDetail.css";
 
 const RouteDetail = () => {
@@ -48,22 +49,28 @@ const RouteDetail = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/bookings", {
-        route: id, // 👈 sending route id
+      const res = await axios.post("http://localhost:5000/api/bookings", {
+        route: id,
         ...formData,
       });
 
-      alert("Booking Successful 🎉");
-      setShowModal(false);
+      generateTicketPDF({
+        bookingId: res.data._id,
+        passengerName: formData.passengerName,
+        email: formData.email,
+        phone: formData.phone,
+        from: route.from,
+        to: route.to,
+        distanceKm: route.distanceKm,
+        duration: route.duration,
+        travelDate: formData.travelDate,
+        seats: formData.seats,
+        pricePerSeat: route.baseFare,
+        totalPrice: formData.seats * route.baseFare,
+      }, "route");
 
-      // Reset form
-      setFormData({
-        passengerName: "",
-        email: "",
-        phone: "",
-        seats: 1,
-        travelDate: "",
-      });
+      setShowModal(false);
+      setFormData({ passengerName: "", email: "", phone: "", seats: 1, travelDate: "" });
 
     } catch (error) {
       console.error(error);

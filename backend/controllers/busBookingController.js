@@ -33,10 +33,9 @@ const createBusBooking = async (req, res) => {
 // GET ALL
 const getAllBusBookings = async (req, res) => {
   try {
-    const bookings = await BusBooking.find().populate(
-      "bus",
-      "name numberPlate price"
-    );
+    const bookings = await BusBooking.find()
+      .populate("bus", "name numberPlate price")
+      .sort({ createdAt: -1 });
     res.json(bookings);
   } catch (error) {
     res.status(500).json({ message: error.message });

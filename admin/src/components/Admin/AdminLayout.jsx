@@ -63,8 +63,8 @@ const AdminLayout = () => {
             Contact Messages
           </NavLink>
 
-          <NavLink to="web-queries" className="nav-link">
-            Web Queries
+          <NavLink to="users" className="nav-link">
+            Users
           </NavLink>
         </nav>
       </aside>

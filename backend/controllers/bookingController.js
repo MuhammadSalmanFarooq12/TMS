@@ -7,8 +7,8 @@ const Route = require("../models/Route");
 // ==============================
 // Fleet fare add-on per seat (in addition to route baseFare from Manage Routes)
 const FLEET_FARE_ADDON = {
-  Mercedes: 2000,
-  Scania: 1000,
+  "Faisal Movers": 2000,
+  "Road Master": 1000,
 };
 
 const getFleetAddon = (fleetName) => {
@@ -36,7 +36,7 @@ const createBooking = async (req, res) => {
       });
     }
 
-    // Base fare from Manage Routes + fleet addon (Mercedes +2000, Scania +1000 per seat)
+    // Base fare from Manage Routes + fleet addon (Faisal Movers +2000, Road Master +1000 per seat)
     const farePerSeat = existingRoute.baseFare + getFleetAddon(fleet);
     const totalPrice = Math.round(seats * farePerSeat);
 
@@ -75,7 +75,8 @@ const createBooking = async (req, res) => {
 const getAllBookings = async (req, res) => {
   try {
     const bookings = await Booking.find()
-      .populate("route", "from to duration baseFare availableSeats");
+      .populate("route", "from to duration baseFare availableSeats")
+      .sort({ createdAt: -1 });
 
     res.status(200).json(bookings);
 

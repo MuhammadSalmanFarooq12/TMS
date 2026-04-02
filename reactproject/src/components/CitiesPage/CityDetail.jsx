@@ -5,133 +5,76 @@ import "./CityDetail.css";
 
 const CityDetail = () => {
   const { id } = useParams();
-
   const [city, setCity] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-
-  const [formData, setFormData] = useState({
-    passengerName: "",
-    email: "",
-    seats: 1,
-    travelDate: "",
-  });
+  const [routes, setRoutes] = useState([]);
 
   useEffect(() => {
-    const fetchCityById = async () => {
+    const fetchCity = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/cities/${id}`
-        );
+        const res = await axios.get(`http://localhost:5000/api/cities/${id}`);
         setCity(res.data);
       } catch (error) {
         console.error("Error fetching city:", error);
       }
     };
-
-    fetchCityById();
+    fetchCity();
   }, [id]);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    if (!city?.name) return;
+    const fetchRoutes = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/api/routes?from=${encodeURIComponent(city.name)}`
+        );
+        setRoutes(res.data);
+      } catch (error) {
+        console.error("Error fetching routes:", error);
+      }
+    };
+    fetchRoutes();
+  }, [city]);
 
-  const handleBooking = async (e) => {
-    e.preventDefault();
-
-    try {
-      await axios.post("http://localhost:5000/api/bookings", {
-        route: id, // 👉 city id is sent in the same booking table
-        ...formData,
-      });
-
-      alert("Booking Successful 🎉");
-      setShowForm(false);
-
-    } catch (error) {
-      console.error(error);
-      alert("Booking Failed ❌");
-    }
-  };
-
-  if (!city)
-    return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
+  if (!city) return <h2 className="city-detail-loading">Loading...</h2>;
 
   return (
     <section className="city-detail">
-      <div className="city-detail-container">
 
-        <img
-          src={city.image}
-          alt={city.name}
-          className="city-detail-image"
-        />
-
-        <div className="city-detail-info">
+      {/* ---- City Hero ---- */}
+      <div className="city-detail-hero">
+        <img src={city.image} alt={city.name} className="city-detail-image" />
+        <div className="city-detail-overlay">
           <h2>{city.name}</h2>
-
-          <p>
-            <strong>Province:</strong> {city.province}
-          </p>
-
-          <p>
-            <strong>Country:</strong> {city.country}
-          </p>
-
-          {city.description && (
-            <p>
-              <strong>Description:</strong> {city.description}
-            </p>
-          )}
-
-          <button
-            className="book-btn"
-            onClick={() => setShowForm(!showForm)}
-          >
-            Book Visit
-          </button>
-
-          {showForm && (
-            <form className="booking-form" onSubmit={handleBooking}>
-
-              <input
-                type="text"
-                name="passengerName"
-                placeholder="Your Name"
-                required
-                onChange={handleChange}
-              />
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-                onChange={handleChange}
-              />
-
-              <input
-                type="number"
-                name="seats"
-                min="1"
-                placeholder="Number of Seats"
-                required
-                onChange={handleChange}
-              />
-
-              <input
-                type="date"
-                name="travelDate"
-                required
-                onChange={handleChange}
-              />
-
-              <button type="submit">Confirm Booking</button>
-
-            </form>
-          )}
-
+          {city.description && <p>{city.description}</p>}
         </div>
       </div>
+
+      {/* ---- Routes ---- */}
+      <div className="city-routes-section">
+        <h3>Available Routes from <span>{city.name}</span></h3>
+
+        {routes.length === 0 ? (
+          <p className="city-no-routes">No routes available from {city.name}.</p>
+        ) : (
+          <div className="city-routes-grid">
+            {routes.map((route) => (
+              <div className="city-route-card" key={route._id}>
+                <div className="city-route-top">
+                  <span className="city-route-from">{route.from}</span>
+                  <span className="city-route-arrow">→</span>
+                  <span className="city-route-to">{route.to}</span>
+                </div>
+                <div className="city-route-details">
+                  {route.distanceKm && <p><strong>Distance:</strong> {route.distanceKm} km</p>}
+                  {route.duration && <p><strong>Duration:</strong> {route.duration}</p>}
+                  {route.baseFare && <p><strong>Fare:</strong> PKR {route.baseFare}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
     </section>
   );
 };

@@ -6,10 +6,10 @@ import "./BookingComp.css";
 
 const API_BASE = "http://localhost:5000/api";
 
-// Fleet fare add-on (per seat) — same as backend: Mercedes +2000, Scania +1000
+// Fleet fare add-on (per seat) — same as backend: Faisal Movers +2000, Road Master +1000
 const FLEET_FARE_ADDON = {
-  Mercedes: 2000,
-  Scania: 1000,
+  "Faisal Movers": 2000,
+  "Road Master": 1000,
 };
 
 function getFleetAddon(fleetName) {

@@ -45,7 +45,8 @@ const createPackageBooking = async (req, res) => {
 const getAllPackageBookings = async (req, res) => {
   try {
     const bookings = await PackageBooking.find()
-      .populate("package", "title price");
+      .populate("package", "title price")
+      .sort({ createdAt: -1 });
 
     res.json(bookings);
   } catch (error) {

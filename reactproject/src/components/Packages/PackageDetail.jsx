@@ -1,7 +1,7 @@
-// PackageDetail.jsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import generateTicketPDF from "../../utils/generateTicketPDF";
 import "./PackageDetail.css";
 
 const PackageDetail = () => {
@@ -45,8 +45,8 @@ const PackageDetail = () => {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/api/package-bookings", {
-        packageId: id, // ✅ must match backend
+      const res = await axios.post("http://localhost:5000/api/package-bookings", {
+        packageId: id,
         passengerName: formData.passengerName,
         email: formData.email,
         phone: formData.phone,
@@ -56,15 +56,21 @@ const PackageDetail = () => {
         status: "confirmed",
       });
 
-      alert("Booking Successful 🎉");
-      setShowModal(false);
+      generateTicketPDF({
+        bookingId: res.data._id,
+        passengerName: formData.passengerName,
+        email: formData.email,
+        phone: formData.phone,
+        packageTitle: pkg.title,
+        description: pkg.description,
+        travelDate: formData.travelDate,
+        seats: formData.seats,
+        pricePerSeat: pkg.price,
+        totalPrice: Number(formData.seats) * pkg.price,
+      }, "package");
 
-      setFormData({
-        passengerName: "",
-        email: "",
-        seats: 1,
-        travelDate: "",
-      });
+      setShowModal(false);
+      setFormData({ passengerName: "", email: "", phone: "", seats: 1, travelDate: "" });
 
     } catch (error) {
       console.error("Package booking failed:", error.response || error);
