@@ -41,7 +41,7 @@ const generateTicketPDF = (details, type) => {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(11);
   doc.setTextColor(255, 255, 255);
-  doc.text("FASTINTERCITY", brandX, 9);
+  doc.text("TRAVELKARU", brandX, 9);
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(5.5);
@@ -239,7 +239,7 @@ const generateTicketPDF = (details, type) => {
   doc.setTextColor(107, 114, 128);
   doc.text("BOOKKARU.COM", W / 2, y + 8, { align: "center" });
 
-  doc.save(`FastIntercity_Receipt_${shortId}.pdf`);
+  doc.save(`TravelKaru_Receipt_${shortId}.pdf`);
 };
 
 export default generateTicketPDF;
