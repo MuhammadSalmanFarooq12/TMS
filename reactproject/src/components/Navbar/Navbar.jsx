@@ -15,7 +15,7 @@ const Navbar = () => {
       <div className="navbar-container">
 
         <div className="logo">
-          FAST<span>INTERCITY</span>
+          TRAVEL<span>KARU</span>
         </div>
 
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>

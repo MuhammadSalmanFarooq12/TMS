@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="footer-container">
         {/* LEFT SECTION */}
         <div className="footer-left">
-          <h2 className="logo">FASTINTERCITY</h2>
+          <h2 className="logo">TRAVELKARU</h2>
           <p>
             Our goal is to help tourism operators deliver 
             reliable, efficient, and comfortable travel 

@@ -8,7 +8,7 @@ const AdminLayout = () => {
       
       {/* ===== Sidebar ===== */}
       <aside className="admin-sidebar">
-        <h2 className="admin-logo">FASTINTERCITY</h2>
+        <h2 className="admin-logo">TRAVELKARU</h2>
 
         <nav>
           <NavLink to="" end className="nav-link">
