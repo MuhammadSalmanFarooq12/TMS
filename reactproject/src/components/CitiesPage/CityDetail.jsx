@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import axios from "axios";
 import "./CityDetail.css";
 
 const CityDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [city, setCity] = useState(null);
   const [routes, setRoutes] = useState([]);
 
@@ -39,7 +40,7 @@ const CityDetail = () => {
 
   return (
     <section className="city-detail">
-
+      <button className="back-btn" onClick={() => navigate(-1)}>&#8592; Back</button>
       {/* ---- City Hero ---- */}
       <div className="city-detail-hero">
         <img src={city.image} alt={city.name} className="city-detail-image" />

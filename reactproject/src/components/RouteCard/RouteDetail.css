@@ -5,6 +5,7 @@
   background: linear-gradient(135deg, #000814, #001d3d);
   padding: 60px 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import axios from "axios";
 import generateTicketPDF from "../../utils/generateTicketPDF";
 import "./PackageDetail.css";
 
 const PackageDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [pkg, setPkg] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -84,6 +85,7 @@ const PackageDetail = () => {
 
   return (
     <section className="route-detail">
+      <button className="back-btn" onClick={() => navigate(-1)}>&#8592; Back</button>
       <div className="route-detail-container">
         {pkg.images && pkg.images.length > 0 && (
           <img

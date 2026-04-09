@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import generateTicketPDF from "../../utils/generateTicketPDF";
 import "./FleetDetail.css";
 
 const FleetDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [bus, setBus] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -78,6 +79,7 @@ const FleetDetail = () => {
 
   return (
     <section className="fleet-detail">
+      <button className="back-btn" onClick={() => navigate(-1)}>&#8592; Back</button>
       <div className="fleet-detail-container">
         <img src={`http://localhost:5000${bus.image}`} alt={bus.name} />
 
