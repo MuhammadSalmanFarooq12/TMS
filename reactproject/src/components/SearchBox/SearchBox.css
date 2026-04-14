@@ -69,3 +69,26 @@
   background: #ffd700cc;
   transform: translateY(-1px);
 }
+
+.search-box-swap {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  margin-bottom: 2px;
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.search-box-swap:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: rotate(180deg);
+}

@@ -53,6 +53,10 @@ function BookingComp() {
     fetchData();
   }, []);
 
+  const handleSwap = () => {
+    setFormData((prev) => ({ ...prev, from: prev.to, to: prev.from }));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -124,8 +128,7 @@ function BookingComp() {
     }
   };
 
-  const fromCities = [...new Set(routes.map((r) => r.from).filter(Boolean))].sort();
-  const toCities = [...new Set(routes.map((r) => r.to).filter(Boolean))].sort();
+  const allCities = [...new Set(routes.flatMap((r) => [r.from, r.to]).filter(Boolean))].sort();
 
   if (loading) {
     return (
@@ -145,17 +148,21 @@ function BookingComp() {
             <label>From</label>
             <select name="from" value={formData.from} onChange={handleChange} required>
               <option value="">Select City</option>
-              {fromCities.map((city) => (
+              {allCities.map((city) => (
                 <option key={city} value={city}>{city}</option>
               ))}
             </select>
           </div>
 
+          <button type="button" className="swap-btn" onClick={handleSwap} title="Swap cities">
+            ⇄
+          </button>
+
           <div className="input-group">
             <label>To</label>
             <select name="to" value={formData.to} onChange={handleChange} required>
               <option value="">Select City</option>
-              {toCities.map((city) => (
+              {allCities.map((city) => (
                 <option key={city} value={city}>{city}</option>
               ))}
             </select>

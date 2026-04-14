@@ -29,8 +29,9 @@
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
   gap: 16px;
+  align-items: flex-end;
 }
 
 /* ---------- Input group ---------- */
@@ -165,6 +166,29 @@
   transform: none;
 }
 
+.swap-btn {
+  background: #0f172a;
+  border: 1px solid #1f2933;
+  color: #94a3b8;
+  font-size: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s, transform 0.3s;
+}
+
+.swap-btn:hover {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: #f97316;
+  color: #f97316;
+  transform: rotate(180deg);
+}
+
 .BookingComp-fare-note {
   font-size: 12px;
   color: #94a3b8;
@@ -190,6 +214,10 @@
 @media (max-width: 700px) {
   .row {
     grid-template-columns: 1fr;
+  }
+
+  .row .swap-btn {
+    display: none;
   }
 
   .BookingComp-container {

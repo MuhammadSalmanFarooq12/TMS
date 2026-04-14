@@ -3,28 +3,29 @@ import axios from "axios";
 import "./StickySearchBar.css";
 
 const StickySearchBar = ({ onSearch }) => {
-  const [fromCities, setFromCities] = useState([]);
-  const [toCities, setToCities] = useState([]);
+  const [allCities, setAllCities] = useState([]);
   const [searchData, setSearchData] = useState({ from: "", to: "" });
 
   useEffect(() => {
     const fetchCities = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/routes");
-        const allRoutes = res.data;
-        
-        // Extract unique cities for the dropdowns
-        const uniqueFrom = [...new Set(allRoutes.map((r) => r.from))];
-        const uniqueTo = [...new Set(allRoutes.map((r) => r.to))];
-        
-        setFromCities(uniqueFrom);
-        setToCities(uniqueTo);
+        const routes = res.data;
+        const all = [...new Set([
+          ...routes.map((r) => r.from),
+          ...routes.map((r) => r.to),
+        ].filter(Boolean))].sort();
+        setAllCities(all);
       } catch (err) {
         console.error("Error fetching cities for searchbar", err);
       }
     };
     fetchCities();
   }, []);
+
+  const handleSwap = () => {
+    setSearchData((prev) => ({ from: prev.to, to: prev.from }));
+  };
 
   const handleChange = (e) => {
     setSearchData({ ...searchData, [e.target.name]: e.target.value });
@@ -48,14 +49,17 @@ const StickySearchBar = ({ onSearch }) => {
             value={searchData.from}
             onChange={handleChange}
             required
-            aria-label="Select departure city"
           >
             <option value="">Select city</option>
-            {fromCities.map((city) => (
+            {allCities.map((city) => (
               <option key={city} value={city}>{city}</option>
             ))}
           </select>
         </div>
+
+        <button type="button" className="swap-btn" onClick={handleSwap} title="Swap cities">
+          ⇄
+        </button>
 
         <div className="input-group">
           <label htmlFor="route-to">Destination</label>
@@ -65,10 +69,9 @@ const StickySearchBar = ({ onSearch }) => {
             value={searchData.to}
             onChange={handleChange}
             required
-            aria-label="Select destination city"
           >
             <option value="">Select city</option>
-            {toCities.map((city) => (
+            {allCities.map((city) => (
               <option key={city} value={city}>{city}</option>
             ))}
           </select>

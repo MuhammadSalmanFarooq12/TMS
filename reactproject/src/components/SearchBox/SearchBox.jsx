@@ -8,7 +8,7 @@ const SearchBox = ({ onSearch }) => {
   const [fromCity, setFromCity] = useState("");
   const [toCity, setToCity] = useState("");
   const [travelDate, setTravelDate] = useState("");
-  const [cities, setCities] = useState({ from: [], to: [] });
+  const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,9 +16,11 @@ const SearchBox = ({ onSearch }) => {
       try {
         const res = await axios.get(`${API_BASE}/routes`);
         const routes = res.data || [];
-        const fromSet = [...new Set(routes.map((r) => r.from).filter(Boolean))].sort();
-        const toSet = [...new Set(routes.map((r) => r.to).filter(Boolean))].sort();
-        setCities({ from: fromSet, to: toSet });
+        const all = [...new Set([
+          ...routes.map((r) => r.from),
+          ...routes.map((r) => r.to),
+        ].filter(Boolean))].sort();
+        setCities(all);
       } catch (err) {
         console.error("Error fetching routes for search", err);
       } finally {
@@ -28,16 +30,15 @@ const SearchBox = ({ onSearch }) => {
     fetchCities();
   }, []);
 
+  const handleSwap = () => {
+    setFromCity(toCity);
+    setToCity(fromCity);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!fromCity || !toCity) {
-      return;
-    }
-    onSearch({
-      from: fromCity,
-      to: toCity,
-      date: travelDate || undefined,
-    });
+    if (!fromCity || !toCity) return;
+    onSearch({ from: fromCity, to: toCity, date: travelDate || undefined });
   };
 
   const today = new Date().toISOString().slice(0, 10);
@@ -59,11 +60,15 @@ const SearchBox = ({ onSearch }) => {
           required
         >
           <option value="">Select city</option>
-          {cities.from.map((city) => (
+          {cities.map((city) => (
             <option key={city} value={city}>{city}</option>
           ))}
         </select>
       </div>
+
+      <button type="button" className="search-box-swap" onClick={handleSwap} title="Swap cities">
+        ⇄
+      </button>
 
       <div className="search-box-field">
         <label htmlFor="hero-to">Arrival</label>
@@ -74,7 +79,7 @@ const SearchBox = ({ onSearch }) => {
           required
         >
           <option value="">Select city</option>
-          {cities.to.map((city) => (
+          {cities.map((city) => (
             <option key={city} value={city}>{city}</option>
           ))}
         </select>

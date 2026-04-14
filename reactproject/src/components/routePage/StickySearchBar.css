@@ -98,6 +98,30 @@
   transform: translateY(0);
 }
 
+.swap-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s, transform 0.3s;
+}
+
+.swap-btn:hover {
+  background: rgba(249, 115, 22, 0.15);
+  border-color: #f97316;
+  color: #f97316;
+  transform: rotate(180deg);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .search-bar-form {
