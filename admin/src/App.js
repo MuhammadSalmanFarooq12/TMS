@@ -26,6 +26,10 @@ import ManageBusBookings from './components/Admin/ManageBusBookings';
 import EditBusBooking from './components/Admin/EditBusBooking';
 import ManageContacts from './components/Admin/ManageContacts';
 import ManageUsers from './components/Admin/ManageUsers';
+import AddHotel from './components/Admin/AddHotel';
+import ManageHotels from './components/Admin/ManageHotels';
+import HotelBookings from './components/Admin/HotelBookings';
+import EditHotel from './components/Admin/EditHotel';
 
 function App() {
   return (
@@ -59,6 +63,10 @@ function App() {
           <Route path="cities/edit/:id" element={<EditCity />} />
           <Route path="/admin/contacts" element={<ManageContacts />} />
           <Route path="users" element={<ManageUsers />} />
+          <Route path="hotels/add" element={<AddHotel />} />
+          <Route path="hotels" element={<ManageHotels />} />
+          <Route path="hotels/edit/:id" element={<EditHotel />} />
+          <Route path="hotel-bookings" element={<HotelBookings />} />
 
         </Route>
 

@@ -2,40 +2,23 @@ const mongoose = require("mongoose");
 
 const hotelSchema = new mongoose.Schema(
   {
-    name: {
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    city: {
       type: String,
       required: true,
+      enum: ["Kashmir", "Skardu", "Malam Jabba", "Murree"],
     },
-
-    cityId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "City",
-      required: true,
-    },
-
-    address: {
-      type: String,
-      required: true,
-    },
-
-    rating: {
-      type: Number,
-      min: 1,
-      max: 5,
-    },
-
-    pricePerNight: {
-      type: Number,
-      required: true,
-    },
-
-    amenities: [String], // e.g. ["Wifi", "Breakfast", "Parking"]
-
-    images: [String],
-
-    contactPhone: {
-      type: String,
-    },
+    pricePerNight: { type: Number, required: true },
+    rooms: { type: String, default: "1" },
+    bathrooms: { type: String, default: "1" },
+    sofas: { type: String, default: "0" },
+    balconies: { type: String, default: "0" },
+    ac: { type: Boolean, default: false },
+    wifi: { type: Boolean, default: false },
+    roomHeater: { type: Boolean, default: false },
+    led: { type: Boolean, default: false },
+    image: { type: String, default: "" },
   },
   { timestamps: true }
 );

@@ -63,6 +63,18 @@ const AdminLayout = () => {
             Contact Messages
           </NavLink>
 
+          <NavLink to="hotels/add" className="nav-link">
+            Add Hotel
+          </NavLink>
+
+          <NavLink to="hotels" className="nav-link">
+            Manage Hotels
+          </NavLink>
+
+          <NavLink to="hotel-bookings" className="nav-link">
+            Hotel Bookings
+          </NavLink>
+
           <NavLink to="users" className="nav-link">
             Users
           </NavLink>

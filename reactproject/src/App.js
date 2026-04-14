@@ -20,6 +20,7 @@ import BookingTermsPolicy from './pages/TermsConditions/BookingTermsPolicy';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
+import HotelsPage from './pages/Hotels/HotelsPage';
 import ScrollToTop from "./ScrollToTop";
 import Chatbot from "./components/Chatbot/Chatbot";
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/hotels" element={<HotelsPage />} />
         </Routes>
         <Chatbot />
       </AuthProvider>
