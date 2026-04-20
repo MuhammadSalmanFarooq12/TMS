@@ -3,88 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Receipt</title>
+    <title>Villa Contentezza - Receipt</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus+Jakarta+Sans', sans-serif; }
-        .ticket-cut {
-            clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 95% 75%, 100% 80%, 100% 100%, 0% 100%, 0% 80%, 5% 75%, 0% 70%);
-        }
+        body { font-family: 'Inter', sans-serif; color: #1e3a8a; }
+        .receipt-container { max-width: 800px; margin: 2rem auto; background: white; padding: 3rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .text-villa-blue { color: #1e4b8a; }
+        .bg-villa-blue { background-color: #004481; }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gray-50">
 
-    <div class="w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden">
-        <div class="bg-indigo-600 p-6 text-white flex justify-between items-center">
+    <div class="receipt-container">
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-normal text-villa-blue mb-4">Villa Contentezza</h1>
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-500 mb-2">
+                <span>📍 Via Tammaricella 128</span>
+                <span>📞 +1 345-67-890</span>
+                <span>✉️ villa.contentezza@gmail.com</span>
+            </div>
+            <div class="text-xs text-gray-500">
+                🌐 www.bnbnholiday.com/villa-contentezza
+            </div>
+        </div>
+
+        <hr class="border-t-2 border-blue-100 mb-8">
+
+        <div class="flex justify-between items-start mb-10">
             <div>
-                <h1 class="text-xl font-800 tracking-tight">FASTINTERCITY</h1>
-                <p class="text-[10px] opacity-80 uppercase tracking-widest">Premium Travel</p>
+                <h3 class="font-bold text-villa-blue mb-1">Paid By</h3>
+                <p class="text-sm text-gray-700">Adriana Lucas</p>
+                <p class="text-sm text-gray-700">adriana.lucas@gmail.com</p>
             </div>
             <div class="text-right">
-                <span class="text-[10px] block opacity-80">REF:</span>
-                <span class="text-xs font-bold">86C9C2F0</span>
+                <h2 class="text-4xl font-bold text-villa-blue tracking-tight">RECEIPT</h2>
             </div>
         </div>
 
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
-                <div>
-                    <p class="text-[10px] text-gray-400 uppercase font-bold">From</p>
-                    <p class="text-xl font-bold text-gray-800">Multan</p>
-                </div>
-                <div class="flex-1 flex items-center justify-center px-4">
-                    <div class="h-[2px] flex-1 bg-indigo-100 relative">
-                        <div class="absolute -top-1 left-1/2 -translate-x-1/2 bg-white px-2">
-                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M15,12H11V16H15V12M15,8H11V10H15V8M19,22H5C3.89,22 3,21.11 3,20V4C3,2.9 3.9,2 5,2H19C20.11,2 21,2.9 21,4V20C21,21.11 20.11,22 19,22M19,4H5V20H19V4Z" /></svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-400 uppercase font-bold">To</p>
-                    <p class="text-xl font-bold text-gray-800">Murree</p>
-                </div>
-            </div>
+        <div class="grid grid-cols-2 gap-y-2 mb-10">
+            <div class="col-span-2"><h3 class="font-bold text-villa-blue mb-2">Booking Details</h3></div>
+            
+            <div class="text-sm text-gray-700">Check in</div>
+            <div class="text-sm text-gray-700 font-medium">Sunday, August 11, 2025</div>
+            
+            <div class="text-sm text-gray-700">Check-out</div>
+            <div class="text-sm text-gray-700 font-medium">Sunday, August 18, 2025</div>
+            
+            <div class="text-sm text-gray-700">Guests</div>
+            <div class="text-sm text-gray-700 font-medium">2 adults, 2 children</div>
+            
+            <div class="text-sm text-gray-700">Unit</div>
+            <div class="text-sm text-gray-700 font-medium">Apartment Lido</div>
 
-            <div class="grid grid-cols-2 gap-4 border-t border-b border-dashed border-gray-200 py-4 mb-6">
-                <div>
-                    <p class="text-[10px] text-gray-400 uppercase">Passenger</p>
-                    <p class="text-sm font-semibold truncate">M. Salman Farooq</p>
+            <div class="absolute right-[calc(50%-400px+3rem)] mt-[-100px] flex flex-col items-end gap-1">
+                <div class="flex gap-12">
+                    <span class="text-xs font-bold text-villa-blue">Receipt #</span>
+                    <span class="text-xs text-gray-700">0000126</span>
                 </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-400 uppercase">Date</p>
-                    <p class="text-sm font-semibold">27 Apr 2026</p>
+                <div class="flex gap-12">
+                    <span class="text-xs font-bold text-villa-blue">Receipt Date</span>
+                    <span class="text-xs text-gray-700">26-07-2024</span>
                 </div>
-                <div>
-                    <p class="text-[10px] text-gray-400 uppercase">Seat</p>
-                    <p class="text-sm font-semibold">01 (Confirmed)</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-400 uppercase">Distance</p>
-                    <p class="text-sm font-semibold">612 km</p>
-                </div>
-            </div>
-
-            <div class="bg-gray-50 rounded-2xl p-4 flex justify-between items-center mb-4">
-                <span class="text-sm font-bold text-gray-600">Total Amount</span>
-                <span class="text-xl font-800 text-indigo-600">PKR 4,000</span>
-            </div>
-
-            <div class="flex items-start gap-3 bg-amber-50 p-3 rounded-xl">
-                <span class="text-amber-600 text-lg">⚠️</span>
-                <p class="text-[10px] text-amber-800 leading-tight">
-                    <strong>Note:</strong> Please arrive at the station at least <strong>30 minutes</strong> before departure for a smooth check-in.
-                </p>
             </div>
         </div>
 
-        <div class="bg-gray-900 p-6 flex flex-col items-center gap-2">
-            <div class="w-full h-12 bg-white flex items-center justify-center overflow-hidden rounded">
-                <div class="flex gap-[2px] items-center">
-                   <div class="h-8 w-1 bg-black"></div><div class="h-8 w-[1px] bg-black"></div><div class="h-8 w-2 bg-black"></div><div class="h-8 w-[1px] bg-black"></div><div class="h-8 w-1 bg-black"></div><div class="h-8 w-3 bg-black"></div><div class="h-8 w-1 bg-black"></div><div class="h-8 w-[2px] bg-black"></div><div class="h-8 w-1 bg-black"></div><div class="h-8 w-2 bg-black"></div><div class="h-8 w-1 bg-black"></div><div class="h-8 w-[1px] bg-black"></div><div class="h-8 w-3 bg-black"></div><div class="h-8 w-1 bg-black"></div><div class="h-8 w-1 bg-black"></div>
-                </div>
+        <div class="overflow-hidden border border-gray-200 rounded-sm mb-4">
+            <table class="w-full text-left">
+                <thead class="bg-villa-blue text-white text-xs uppercase tracking-wider">
+                    <tr>
+                        <th class="px-4 py-2 font-semibold">Quantity</th>
+                        <th class="px-4 py-2 font-semibold">Description</th>
+                        <th class="px-4 py-2 text-right font-semibold">Unit Price</th>
+                        <th class="px-4 py-2 text-right font-semibold">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 text-sm">
+                    <tr>
+                        <td class="px-4 py-3">7.00</td>
+                        <td class="px-4 py-3">Nights in apartment Lido</td>
+                        <td class="px-4 py-3 text-right">$100.00</td>
+                        <td class="px-4 py-3 text-right font-medium">$700.00*</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3">28.00</td>
+                        <td class="px-4 py-3">Breakfast</td>
+                        <td class="px-4 py-3 text-right">$10.00</td>
+                        <td class="px-4 py-3 text-right font-medium">$280.00*</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3">1.00</td>
+                        <td class="px-4 py-3">Airport pick-up</td>
+                        <td class="px-4 py-3 text-right">$80.00</td>
+                        <td class="px-4 py-3 text-right font-medium">$80.00*</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex flex-col items-end gap-2 pr-4 mb-8">
+            <div class="w-64 flex justify-between text-sm">
+                <span class="text-gray-500">Subtotal</span>
+                <span class="text-gray-700">$986.05</span>
             </div>
-            <p class="text-[9px] text-gray-500 tracking-[0.3em]">BOOKKARU.COM</p>
+            <div class="w-64 flex justify-between text-sm">
+                <span class="text-gray-500">Tax</span>
+                <span class="text-gray-700">$73.95</span>
+            </div>
+            <div class="w-full h-[1px] bg-gray-200 my-1"></div>
+            <div class="w-full bg-blue-50 flex justify-between p-3 rounded">
+                <span class="font-bold text-villa-blue">Total</span>
+                <span class="text-xl font-bold text-villa-blue">$1060,00</span>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-1">*Tax: 7.50%</p>
+        </div>
+
+        <div class="mt-8 border-t border-gray-100 pt-4">
+            <h4 class="font-bold text-villa-blue text-sm mb-1">Notes</h4>
+            <p class="text-sm text-gray-600 italic">Thank you for staying with us. We look forward to your next visit :)</p>
         </div>
     </div>
 

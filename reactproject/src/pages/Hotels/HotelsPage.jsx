@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import Cursor from "../../components/Cursor/Cursor";
+import generateHotelReceiptPDF from "../../utils/generateHotelReceiptPDF";
 import "./HotelsPage.css";
 
 const API = "http://localhost:5000/api";
@@ -39,8 +40,24 @@ const BookingModal = ({ hotel, onClose }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(`${API}/hotel-bookings`, { hotelId: hotel._id, ...form });
-      alert("Booking confirmed! 🎉");
+      const res = await axios.post(`${API}/hotel-bookings`, { hotelId: hotel._id, ...form });
+      const nights = Math.max(1, Math.ceil(
+        (new Date(form.checkOut) - new Date(form.checkIn)) / 86400000
+      ));
+      generateHotelReceiptPDF({
+        bookingId: res.data._id,
+        hotelTitle: hotel.title,
+        hotelCity: hotel.city,
+        guestName: form.guestName,
+        email: form.email,
+        phone: form.phone,
+        checkIn: form.checkIn,
+        checkOut: form.checkOut,
+        rooms: form.rooms,
+        nights,
+        pricePerNight: hotel.pricePerNight,
+        totalPrice: nights * hotel.pricePerNight * form.rooms,
+      });
       onClose();
     } catch (err) {
       alert(err.response?.data?.message || "Booking failed ❌");
