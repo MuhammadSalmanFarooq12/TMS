@@ -23,7 +23,7 @@ const StatCard = ({ label, value, icon, color, sub }) => (
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
     buses: 0, routes: 0, bookings: 0,
-    users: 0, packages: 0, revenue: 0,
+    users: 0, packages: 0, revenue: 0, hotels: 0,
   });
   const [monthlyData, setMonthlyData] = useState([]);
   const [recentBookings, setRecentBookings] = useState([]);
@@ -32,13 +32,14 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const [busesRes, routesRes, bookingsRes, usersRes, packagesRes] =
+        const [busesRes, routesRes, bookingsRes, usersRes, packagesRes, hotelsRes] =
           await Promise.all([
             axios.get(`${API}/buses`),
             axios.get(`${API}/routes`),
             axios.get(`${API}/bookings`),
             axios.get(`${API}/users`),
             axios.get(`${API}/packages`),
+            axios.get(`${API}/hotels`),
           ]);
 
         const bookings = bookingsRes.data || [];
@@ -51,6 +52,7 @@ const AdminDashboard = () => {
           users:    usersRes.data?.length    ?? 0,
           packages: packagesRes.data?.length ?? 0,
           revenue:  totalRevenue,
+          hotels:   hotelsRes.data?.length   ?? 0,
         });
 
         // Monthly revenue + bookings count
@@ -111,6 +113,7 @@ const AdminDashboard = () => {
         <StatCard label="Bookings"        value={stats.bookings} icon="🎟️" color="#34d399" sub="All time" />
         <StatCard label="Registered Users" value={stats.users}  icon="👥" color="#fb923c" sub="Platform users" />
         <StatCard label="Tour Packages"   value={stats.packages} icon="🧳" color="#f472b6" sub="Available packages" />
+        <StatCard label="Hotels"           value={stats.hotels}   icon="🏨" color="#2dd4bf" sub="Listed properties" />
         <StatCard label="Total Revenue"   value={fmt(stats.revenue)} icon="💰" color="#facc15" sub="From bookings" />
       </div>
 

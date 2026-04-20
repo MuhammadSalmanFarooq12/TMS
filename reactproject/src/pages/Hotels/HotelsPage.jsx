@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import Cursor from "../../components/Cursor/Cursor";
@@ -9,7 +10,7 @@ const API = "http://localhost:5000/api";
 const CITIES = ["Kashmir", "Skardu", "Malam Jabba", "Murree"];
 
 const FacilityIcon = ({ label }) => {
-  const icons = { AC: "❄️", WiFi: "📶", "Room Heater": "🔥", "LED TV": "📺" };
+  const icons = { AC: "❄️", WiFi: "📶", "Room Heater": "🔥", "LED TV": "📺", "No Smoking": "🚭" };
   return (
     <span className="hotel-facility-tag">
       {icons[label] || "✔"} {label}
@@ -19,7 +20,7 @@ const FacilityIcon = ({ label }) => {
 
 const BookingModal = ({ hotel, onClose }) => {
   const [form, setForm] = useState({
-    guestName: "", email: "", phone: "", checkIn: "", checkOut: "", guests: 1,
+    guestName: "", email: "", phone: "", checkIn: "", checkOut: "", rooms: 1,
   });
   const [loading, setLoading] = useState(false);
 
@@ -27,11 +28,11 @@ const BookingModal = ({ hotel, onClose }) => {
     form.checkIn && form.checkOut
       ? Math.max(1, Math.ceil((new Date(form.checkOut) - new Date(form.checkIn)) / 86400000))
       : 0;
-  const total = nights * hotel.pricePerNight * form.guests;
+  const total = nights * hotel.pricePerNight * form.rooms;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: name === "guests" ? Math.max(1, +value) : value }));
+    setForm((prev) => ({ ...prev, [name]: name === "rooms" ? Math.max(1, +value) : value }));
   };
 
   const handleSubmit = async (e) => {
@@ -53,7 +54,7 @@ const BookingModal = ({ hotel, onClose }) => {
       <div className="hotel-modal" onClick={(e) => e.stopPropagation()}>
         <button className="hotel-modal-close" onClick={onClose}>✕</button>
         <h3>Book — {hotel.title}</h3>
-        <p className="hotel-modal-city">{hotel.city} · PKR {hotel.pricePerNight.toLocaleString()}/night</p>
+        <p className="hotel-modal-city">{hotel.city} · PKR {hotel.pricePerNight.toLocaleString()}/night · {hotel.bedType} Bed</p>
 
         <form onSubmit={handleSubmit}>
           <div className="hotel-modal-row">
@@ -72,8 +73,8 @@ const BookingModal = ({ hotel, onClose }) => {
               <input name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required />
             </div>
             <div className="hotel-modal-field">
-              <label>Guests</label>
-              <input type="number" name="guests" min="1" value={form.guests} onChange={handleChange} required />
+              <label>Rooms</label>
+              <input type="number" name="rooms" min="1" value={form.rooms} onChange={handleChange} required />
             </div>
           </div>
           <div className="hotel-modal-row">
@@ -91,7 +92,7 @@ const BookingModal = ({ hotel, onClose }) => {
 
           {nights > 0 && (
             <p className="hotel-modal-total">
-              {nights} night(s) × {form.guests} guest(s) × PKR {hotel.pricePerNight.toLocaleString()} ={" "}
+              {nights} night(s) × {form.rooms} room(s) × PKR {hotel.pricePerNight.toLocaleString()} ={" "}
               <strong>PKR {total.toLocaleString()}</strong>
             </p>
           )}
@@ -111,6 +112,7 @@ const HotelCard = ({ hotel, onBook }) => {
     hotel.wifi && "WiFi",
     hotel.roomHeater && "Room Heater",
     hotel.led && "LED TV",
+    hotel.noSmoking && "No Smoking",
   ].filter(Boolean);
 
   return (
@@ -140,7 +142,14 @@ const HotelCard = ({ hotel, onBook }) => {
         <div className="hotel-features-section">
           <p className="hotel-section-label">Features</p>
           <div className="hotel-features-grid">
-            <span className="hotel-feature-item">🛏 {hotel.rooms} Room{hotel.rooms > 1 ? "s" : ""}</span>
+            {hotel.bedType && <span className="hotel-feature-item">🛏 {hotel.numberOfBeds || 1} {hotel.bedType} Bed{hotel.numberOfBeds > 1 ? "s" : ""}</span>}
+            {hotel.breakfast === "Included"
+              ? <span className="hotel-feature-item hotel-feature-breakfast-yes">🍳 Breakfast Included · 👥 {hotel.persons || 1} Person{hotel.persons > 1 ? "s" : ""}</span>
+              : <>
+                  {hotel.persons && <span className="hotel-feature-item">👥 {hotel.persons} Person{hotel.persons > 1 ? "s" : ""}</span>}
+                  <span className="hotel-feature-item hotel-feature-breakfast-no">🍳 Breakfast Not Included</span>
+                </>
+            }
             <span className="hotel-feature-item">🚿 {hotel.bathrooms} Bath</span>
             {hotel.sofas > 0 && <span className="hotel-feature-item">🛋 {hotel.sofas} Sofa{hotel.sofas > 1 ? "s" : ""}</span>}
             {hotel.balconies > 0 && <span className="hotel-feature-item">🏞 {hotel.balconies} Balcon{hotel.balconies > 1 ? "ies" : "y"}</span>}
@@ -192,8 +201,32 @@ const HotelsPage = () => {
       <div className="hotels-page">
 
         <div className="hotels-hero">
-          <h1>Hotels & Stays</h1>
-          <p>Find the perfect stay across Pakistan's most beautiful destinations</p>
+          <div className="hotels-glow hotels-glow1"></div>
+          <div className="hotels-glow hotels-glow2"></div>
+          <div className="hotels-hero-content">
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Hotels &amp; Stays
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              Find the perfect stay across Pakistan's most beautiful destinations
+            </motion.p>
+            <motion.div
+              className="hotels-scroll-indicator"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              ↓ Scroll Down
+            </motion.div>
+          </div>
         </div>
 
         {loading ? (

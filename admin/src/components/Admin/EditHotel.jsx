@@ -16,14 +16,18 @@ const EditHotel = () => {
     title: "",
     description: "",
     pricePerNight: "",
-    rooms: "1",
+    bedType: "Single",
+    numberOfBeds: "1",
+    persons: "1",
     bathrooms: "1",
     sofas: "0",
     balconies: "0",
+    breakfast: "Not Included",
     ac: false,
     wifi: false,
     roomHeater: false,
     led: false,
+    noSmoking: false,
   });
 
   useEffect(() => {
@@ -37,14 +41,18 @@ const EditHotel = () => {
           title: h.title || "",
           description: h.description || "",
           pricePerNight: h.pricePerNight || "",
-          rooms: String(h.rooms ?? "1"),
+          bedType: h.bedType || "Single",
+          numberOfBeds: String(h.numberOfBeds ?? "1"),
+          persons: String(h.persons ?? "1"),
           bathrooms: String(h.bathrooms ?? "1"),
           sofas: String(h.sofas ?? "0"),
           balconies: String(h.balconies ?? "0"),
+          breakfast: h.breakfast || "Not Included",
           ac: h.ac || false,
           wifi: h.wifi || false,
           roomHeater: h.roomHeater || false,
           led: h.led || false,
+          noSmoking: h.noSmoking || false,
         });
       } catch {
         toast.error("Failed to load hotel data");
@@ -124,9 +132,27 @@ const EditHotel = () => {
         <p style={{ color: "#e2e8f0", fontWeight: 600, margin: "16px 0 10px" }}>Features</p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           <div>
-            <label style={{ fontSize: 13, color: "#94a3b8" }}>Rooms</label>
-            <select name="rooms" value={form.rooms} onChange={handleChange}>
+            <label style={{ fontSize: 13, color: "#94a3b8" }}>Bed Type</label>
+            <select name="bedType" value={form.bedType} onChange={handleChange}>
+              {["Single", "Master", "King"].map((t) => <option key={t} value={t}>{t}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style={{ fontSize: 13, color: "#94a3b8" }}>Number of Beds</label>
+            <select name="numberOfBeds" value={form.numberOfBeds} onChange={handleChange}>
               {["1","2","3","4","5","6"].map((n) => <option key={n} value={n}>{n}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style={{ fontSize: 13, color: "#94a3b8" }}>Persons</label>
+            <select name="persons" value={form.persons} onChange={handleChange}>
+              {["1","2","3","4","5","6","7","8"].map((n) => <option key={n} value={n}>{n}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style={{ fontSize: 13, color: "#94a3b8" }}>Breakfast</label>
+            <select name="breakfast" value={form.breakfast} onChange={handleChange}>
+              {["Included", "Not Included"].map((o) => <option key={o} value={o}>{o}</option>)}
             </select>
           </div>
           <div>
@@ -157,6 +183,7 @@ const EditHotel = () => {
             { name: "wifi", label: "WiFi" },
             { name: "roomHeater", label: "Room Heater" },
             { name: "led", label: "LED TV" },
+            { name: "noSmoking", label: "🚭 No Smoking" },
           ].map(({ name, label }) => (
             <label key={name} style={{ display: "flex", alignItems: "center", gap: 8, color: "#cbd5e1", fontSize: 14, cursor: "pointer" }}>
               <input type="checkbox" name={name} checked={form[name]} onChange={handleChange} />

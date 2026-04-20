@@ -12,6 +12,7 @@ exports.createPackage = async (req, res) => {
     const packageData = await TourPackage.create({
       ...req.body,
       images: imageUrls,
+      facilities: req.body.facilities ? JSON.parse(req.body.facilities) : [],
     });
 
     res.status(201).json(packageData);
@@ -56,11 +57,13 @@ exports.getPackageById = async (req, res) => {
 exports.updatePackage = async (req, res) => {
   try {
     let data = { ...req.body };
-
     if (req.files && req.files.length > 0) {
       data.images = req.files.map(
         (file) => `http://localhost:5000/uploads/${file.filename}`
       );
+    }
+    if (req.body.facilities) {
+      data.facilities = JSON.parse(req.body.facilities);
     }
 
     const updated = await TourPackage.findByIdAndUpdate(

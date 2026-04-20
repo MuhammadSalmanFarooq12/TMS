@@ -74,10 +74,12 @@ const generateTicketPDF = (details, type) => {
 
   const fromLabel = type === "route" ? (details.from || "—")
     : type === "fleet" ? (details.busName || "—")
+    : type === "hotel" ? (details.hotelLabel || "—")
     : (details.packageTitle || "—");
 
   const toLabel = type === "route" ? (details.to || "—")
     : type === "fleet" ? (details.busRoute || "—")
+    : type === "hotel" ? (details.city || "—")
     : "Package";
 
   doc.text(fromLabel, m, y + 7);
@@ -149,24 +151,31 @@ const generateTicketPDF = (details, type) => {
   };
 
   // Row 1
-  gridField(col1, "Passenger", details.passengerName);
-  gridField(col2, "Date", new Date(details.travelDate).toLocaleDateString("en-PK", {
-    day: "numeric", month: "short", year: "numeric",
-  }), true);
+  const nameField = type === "hotel" ? details.guestName : details.passengerName;
+  const dateField = type === "hotel"
+    ? new Date(details.checkIn).toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" })
+    : new Date(details.travelDate).toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" });
+  gridField(col1, "Guest / Passenger", nameField);
+  gridField(col2, type === "hotel" ? "Check-in" : "Date", dateField, true);
   y += 12;
 
   // Row 2
-  const seatLabel = `${details.seats} (Confirmed)`;
-  gridField(col1, "Seat", seatLabel);
+  const seatLabel = type === "hotel"
+    ? `${details.rooms} Room(s) · ${details.nights} Night(s)`
+    : `${details.seats} (Confirmed)`;
+  gridField(col1, type === "hotel" ? "Rooms / Nights" : "Seat", seatLabel);
 
   const detailRight = type === "route"
     ? (details.distanceKm ? `${details.distanceKm} km` : "—")
     : type === "fleet"
     ? (details.numberPlate || "—")
+    : type === "hotel"
+    ? new Date(details.checkOut).toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" })
     : `PKR ${Number(details.pricePerSeat || 0).toLocaleString()}`;
 
   const detailRightLabel = type === "route" ? "Distance"
     : type === "fleet" ? "Plate No."
+    : type === "hotel" ? "Check-out"
     : "Per Person";
 
   gridField(col2, detailRightLabel, detailRight, true);

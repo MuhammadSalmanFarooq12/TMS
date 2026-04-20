@@ -62,7 +62,8 @@ const ManageHotels = () => {
               <th>Title</th>
               <th>City</th>
               <th>Price/Night</th>
-              <th>Rooms</th>
+              <th>Bed Type</th>
+              <th>Beds</th>
               <th>Facilities</th>
               <th>Actions</th>
             </tr>
@@ -73,9 +74,10 @@ const ManageHotels = () => {
                 <td>{h.title}</td>
                 <td>{h.city}</td>
                 <td>PKR {h.pricePerNight}</td>
-                <td>{h.rooms}</td>
+                <td>{h.bedType || "—"}</td>
+                <td>{h.numberOfBeds || "—"}</td>
                 <td>
-                  {[h.ac && "AC", h.wifi && "WiFi", h.roomHeater && "Heater", h.led && "LED"]
+                  {[h.ac && "AC", h.wifi && "WiFi", h.roomHeater && "Heater", h.led && "LED", h.noSmoking && "🚭"]
                     .filter(Boolean).join(", ") || "—"}
                 </td>
                 <td>
@@ -84,7 +86,7 @@ const ManageHotels = () => {
                 </td>
               </tr>
             )) : (
-              <tr><td colSpan="6">No hotels found</td></tr>
+              <tr><td colSpan="7">No hotels found</td></tr>
             )}
           </tbody>
         </table>

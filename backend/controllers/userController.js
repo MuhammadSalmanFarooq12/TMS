@@ -59,13 +59,19 @@ exports.getMe = async (req, res) => {
   }
 };
 
-// ── Get my bookings (protected) ──
+// GET my bookings (protected) ──
 exports.myBookings = async (req, res) => {
   try {
     const bookings = await Booking.find({ email: req.userEmail })
       .populate("route", "from to baseFare distanceKm duration")
       .sort({ createdAt: -1 });
-    res.json(bookings);
+
+    const HotelBooking = require("../models/HotelBooking");
+    const hotelBookings = await HotelBooking.find({ email: req.userEmail })
+      .populate("hotel", "title city pricePerNight")
+      .sort({ createdAt: -1 });
+
+    res.json({ bookings, hotelBookings });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

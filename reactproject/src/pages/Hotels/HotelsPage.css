@@ -8,26 +8,64 @@
 
 /* ── Hero ── */
 .hotels-hero {
-  background: linear-gradient(135deg, #0f172a 0%, #1a1035 100%);
-  padding: 120px 20px 56px;   /* top accounts for fixed navbar ~70px */
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #121314 0%, #0c0c0d 50%, #0f172a 100%);
+  color: #fff;
 }
 
-.hotels-hero h1 {
-  font-size: 36px;
+.hotels-hero-content {
+  max-width: 800px;
+  z-index: 2;
+  position: relative;
+}
+
+.hotels-hero-content h1 {
+  font-size: 48px;
   font-weight: 800;
   color: #f1f5f9;
-  margin: 0 0 10px;
+  margin: 0 0 20px;
   letter-spacing: -0.5px;
 }
 
-.hotels-hero p {
-  font-size: 15px;
-  color: #64748b;
+.hotels-hero-content p {
+  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.6;
   margin: 0;
 }
 
+.hotels-scroll-indicator {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #f97316;
+  animation: hotels-bounce 1.8s infinite;
+}
+
+.hotels-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(249,115,22,0.25), transparent 70%);
+  filter: blur(80px);
+  z-index: 1;
+}
+
+.hotels-glow1 { top: -100px; left: -100px; }
+.hotels-glow2 { bottom: -100px; right: -100px; }
+
+@keyframes hotels-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+/* ── Loading ── */
 .hotels-loading {
   text-align: center;
   color: #64748b;
@@ -76,8 +114,9 @@
 /* ── Grid ── */
 .hotels-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
 }
 
 /* ── Card ── */
@@ -87,6 +126,8 @@
   border-radius: 18px;
   overflow: hidden;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  display: flex;
+  flex-direction: column;
 }
 
 .hotel-card:hover {
@@ -99,8 +140,9 @@
 .hotel-card-img-wrap {
   position: relative;
   width: 100%;
-  height: 190px;
+  height: 200px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .hotel-card-img {
@@ -138,6 +180,9 @@
 /* ── Card Body ── */
 .hotel-card-body {
   padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .hotel-card-title {
@@ -152,6 +197,10 @@
   color: #475569;
   line-height: 1.6;
   margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* price shown when no image */
@@ -168,7 +217,7 @@
   color: #475569;
 }
 
-/* ── Features ── */
+/* ── Section Labels ── */
 .hotel-section-label {
   font-size: 10px;
   font-weight: 700;
@@ -183,6 +232,7 @@
   margin-bottom: 12px;
 }
 
+/* ── Features Grid ── */
 .hotel-features-grid {
   display: flex;
   flex-wrap: wrap;
@@ -196,6 +246,18 @@
   border: 1px solid rgba(255,255,255,0.07);
   padding: 3px 9px;
   border-radius: 6px;
+}
+
+.hotel-feature-breakfast-yes {
+  color: #4ade80 !important;
+  background: rgba(74,222,128,0.08) !important;
+  border-color: rgba(74,222,128,0.2) !important;
+}
+
+.hotel-feature-breakfast-no {
+  color: #f87171 !important;
+  background: rgba(248,113,113,0.08) !important;
+  border-color: rgba(248,113,113,0.2) !important;
 }
 
 /* ── Facilities ── */
@@ -214,11 +276,11 @@
   border-radius: 6px;
 }
 
-/* ── Book Button ── */
+/* ── Book Button — always at bottom ── */
 .hotel-book-btn {
-  margin-top: 16px;
-  width: 100%;
+  margin-top: auto;
   padding: 11px;
+  width: 100%;
   border: none;
   border-radius: 10px;
   background: linear-gradient(135deg, #f59e0b, #d97706);
@@ -363,12 +425,18 @@
 .hotel-modal-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
 /* ── Responsive ── */
-@media (max-width: 768px) {
-  .hotels-hero { padding: 110px 20px 44px; }
-  .hotels-hero h1 { font-size: 26px; }
+@media (max-width: 1024px) {
+  .hotels-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .hotels-hero-content h1 { font-size: 32px; }
+  .hotels-hero-content p  { font-size: 16px; }
+  .hotels-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+@media (max-width: 560px) {
+  .hotels-grid { grid-template-columns: 1fr; }
   .hotel-modal-row { grid-template-columns: 1fr; }
   .hotel-modal { padding: 24px 16px; }
 }

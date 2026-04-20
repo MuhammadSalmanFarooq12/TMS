@@ -2,16 +2,14 @@ const mongoose = require("mongoose");
 
 const hotelBookingSchema = new mongoose.Schema(
   {
-    hotelId: { type: mongoose.Schema.Types.ObjectId, ref: "Hotel", required: true },
-    hotelTitle: { type: String },
-    hotelCity: { type: String },
+    hotel: { type: mongoose.Schema.Types.ObjectId, ref: "Hotel", required: true },
     guestName: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
-    checkIn: { type: String, required: true },
-    checkOut: { type: String, required: true },
-    guests: { type: Number, default: 1 },
-    totalPrice: { type: Number },
+    rooms: { type: Number, required: true, default: 1 },
+    checkIn: { type: Date, required: true },
+    checkOut: { type: Date, required: true },
+    totalPrice: { type: Number, required: true },
     status: { type: String, default: "confirmed" },
   },
   { timestamps: true }

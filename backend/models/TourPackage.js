@@ -70,6 +70,8 @@ const tourPackageSchema = new mongoose.Schema(
       enum: ["active", "inactive"],
       default: "active",
     },
+    facilities: [String],
+    placesToVisit: { type: String, default: "" },
   },
   { timestamps: true }
 );
