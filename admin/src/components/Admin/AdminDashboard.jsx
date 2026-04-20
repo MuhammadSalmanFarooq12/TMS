@@ -32,7 +32,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const [busesRes, routesRes, bookingsRes, usersRes, packagesRes, hotelsRes] =
+        const [busesRes, routesRes, bookingsRes, usersRes, packagesRes, hotelsRes, pkgBookingsRes, hotelBookingsRes] =
           await Promise.all([
             axios.get(`${API}/buses`),
             axios.get(`${API}/routes`),
@@ -40,24 +40,30 @@ const AdminDashboard = () => {
             axios.get(`${API}/users`),
             axios.get(`${API}/packages`),
             axios.get(`${API}/hotels`),
+            axios.get(`${API}/package-bookings`),
+            axios.get(`${API}/hotel-bookings`),
           ]);
 
-        const bookings = bookingsRes.data || [];
-        const totalRevenue = bookings.reduce((s, b) => s + (b.totalPrice || 0), 0);
+        const routeBookings   = (bookingsRes.data || []).map((b) => ({ ...b, _type: "Route" }));
+        const pkgBookings     = (pkgBookingsRes.data || []).map((b) => ({ ...b, _type: "Package" }));
+        const hotelBookings   = (hotelBookingsRes.data || []).map((b) => ({ ...b, _type: "Hotel" }));
+        const allBookings     = [...routeBookings, ...pkgBookings, ...hotelBookings];
+
+        const totalRevenue = allBookings.reduce((s, b) => s + (b.totalPrice || 0), 0);
 
         setStats({
           buses:    busesRes.data?.length    ?? 0,
           routes:   routesRes.data?.length   ?? 0,
-          bookings: bookings.length,
+          bookings: allBookings.length,
           users:    usersRes.data?.length    ?? 0,
           packages: packagesRes.data?.length ?? 0,
           revenue:  totalRevenue,
           hotels:   hotelsRes.data?.length   ?? 0,
         });
 
-        // Monthly revenue + bookings count
+        // Monthly revenue + bookings count across all types
         const monthMap = {};
-        bookings.forEach((b) => {
+        allBookings.forEach((b) => {
           const d   = new Date(b.createdAt);
           const key = d.toLocaleString("default", { month: "short", year: "2-digit" });
           if (!monthMap[key]) monthMap[key] = { month: key, revenue: 0, bookings: 0 };
@@ -70,9 +76,9 @@ const AdminDashboard = () => {
         );
         setMonthlyData(sorted);
 
-        // Recent 5 bookings
+        // Recent 5 bookings across all types
         setRecentBookings(
-          [...bookings]
+          [...allBookings]
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .slice(0, 5)
         );
@@ -186,29 +192,54 @@ const AdminDashboard = () => {
             <table className="dash-table">
               <thead>
                 <tr>
-                  <th>Passenger</th>
+                  <th>Type</th>
+                  <th>Passenger / Guest</th>
                   <th>Email</th>
-                  <th>Seats</th>
+                  <th>Details</th>
                   <th>Amount</th>
                   <th>Date</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {recentBookings.map((b) => (
-                  <tr key={b._id}>
-                    <td>{b.passengerName || "—"}</td>
-                    <td>{b.email || "—"}</td>
-                    <td>{b.seats}</td>
-                    <td>PKR {(b.totalPrice || 0).toLocaleString()}</td>
-                    <td>{new Date(b.createdAt).toLocaleDateString("en-PK")}</td>
-                    <td>
-                      <span className={`dash-badge dash-badge--${b.status || "confirmed"}`}>
-                        {b.status || "confirmed"}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+                {recentBookings.map((b) => {
+                  const name   = b.passengerName || b.guestName || "—";
+                  const detail = b._type === "Route"
+                    ? `${b.seats || 1} seat(s) · ${b.fleet || ""}`
+                    : b._type === "Package"
+                    ? `${b.seats || 1} seat(s)`
+                    : b._type === "Hotel"
+                    ? `${b.rooms || 1} room(s) · ${b.hotelTitle || b.hotelCity || ""}`
+                    : "—";
+                  const typeColors = {
+                    Route:   "#38bdf8",
+                    Package: "#a78bfa",
+                    Hotel:   "#34d399",
+                  };
+                  return (
+                    <tr key={b._id}>
+                      <td>
+                        <span style={{
+                          fontSize: 11, fontWeight: 700, padding: "2px 8px",
+                          borderRadius: 20, background: `${typeColors[b._type]}22`,
+                          color: typeColors[b._type],
+                        }}>
+                          {b._type}
+                        </span>
+                      </td>
+                      <td>{name}</td>
+                      <td>{b.email || "—"}</td>
+                      <td>{detail}</td>
+                      <td>PKR {(b.totalPrice || 0).toLocaleString()}</td>
+                      <td>{new Date(b.createdAt).toLocaleDateString("en-PK")}</td>
+                      <td>
+                        <span className={`dash-badge dash-badge--${b.status || "confirmed"}`}>
+                          {b.status || "confirmed"}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
